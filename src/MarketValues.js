@@ -1,29 +1,27 @@
-import { toUniversalTime } from './utils';
+export let lastUpdated = new Date();
 
-export const lastUpdated = toUniversalTime(2020, 9, 22, 20, 40);
-
-export default {
+const marketValues = {
   // ores
-  veldspar:     { jita:    6 },
-  scordite:     { jita:   23 },
-  plagioclase:  { jita:   41 },
+  veldspar: { jita: 0 },
+  scordite: { jita: 0 },
+  plagioclase: { jita: 0 },
 
-  omber:        { jita:   68 },
-  kernite:      { jita:  154 },
-  pyroxeres:    { jita:  490 },
-  dark_ochre:   { jita:  490 },
+  omber: { jita: 0 },
+  kernite: { jita: 0 },
+  pyroxeres: { jita: 0 },
+  dark_ochre: { jita: 0 },
 
-  gneiss:       { jita:  615 },
-  hemorphite:   { jita:  742 },
-  spodumain:    { jita: 1060 },
+  gneiss: { jita: 0 },
+  hemorphite: { jita: 0 },
+  spodumain: { jita: 0 },
 
-  hedbergite:   { jita: 1160 },
-  jaspet:       { jita: 1505 },
-  crokite:      { jita: 2150 },
+  hedbergite: { jita: 0 },
+  jaspet: { jita: 0 },
+  crokite: { jita: 0 },
 
-  arkonor:      { jita: 2211 },
-  bistot:       { jita: 2305 },
-  mercoxit:     { jita: 2000 },
+  arkonor: { jita: 0 },
+  bistot: { jita: 0 },
+  mercoxit: { jita: 0 },
 
   // minerals
   tritanium:    { jita:    3 },// 2
@@ -71,3 +69,46 @@ export default {
    Suspended_Plasma:      { jita: 0 },
    Toxic_Metals:      { jita: 0 },  
 };
+
+export class MarketValues {
+  static requests = [];
+  static oldestValue = Math.floor(Date.now() / 1000);
+
+  static listeners = [];
+
+  static ready(listener) {
+    MarketValues.listeners.push(listener);
+  }
+
+  static fireDoneEvent() {
+    lastUpdated = new Date(MarketValues.oldestValue * 1000);
+
+    for (const listener of MarketValues.listeners) {
+      listener();
+    }
+  }
+
+  static getBuyValue(id, marketKey) {
+    MarketValues.requests.push(id);
+
+    const url = `https://api.eve-echoes-market.com/market-stats/${id}`;
+    fetch(url).then(
+      response => response.json()
+    ).then(json => {
+      const value = json[json.length - 1].buy;
+      const stamp = json[json.length - 1].time;
+      marketValues[marketKey].jita = value;
+      MarketValues.requests.splice(MarketValues.requests.indexOf(id), 1);
+
+      if (stamp < MarketValues.oldestValue) {
+        MarketValues.oldestValue = stamp;
+      }
+
+      if (MarketValues.requests.length === 0) {
+        MarketValues.fireDoneEvent();
+      }
+    });
+  }
+}
+
+export default marketValues;

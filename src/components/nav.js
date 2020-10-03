@@ -9,6 +9,7 @@ export default function Nav() {
         <div>
           <Link className="px-2 py-2 hover:bg-gray-400" to="/">Home</Link>
           <Link className="px-2 py-2 hover:bg-gray-400" to="/ores">Ores</Link>
+          <Link className="px-2 py-2 hover:bg-gray-400" to="/manufacture">Manufacture</Link>
         </div>
       </div>
     </nav>

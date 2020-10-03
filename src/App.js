@@ -4,6 +4,7 @@ import { Router, Switch, Route } from 'react-router-dom';
 
 import Ores from "./pages/ores";
 import Home from "./pages/home";
+import Manufacture from "./pages/production/manufacture";
 
 import Nav from "./components/nav";
 
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path="/ores">
               <Ores />
+            </Route>
+            <Route path="/manufacture">
+              <Manufacture />
             </Route>
           </Switch>
         </section>

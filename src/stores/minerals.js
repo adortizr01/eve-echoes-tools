@@ -4,14 +4,14 @@ import { getStickyState, setStickyState } from '../utils';
 import marketValues from '../MarketValues';
 
 export const orgMinerals = [
-  { label: "Tritanium", volume: 0.01, value: marketValues.tritanium.jita },
-  { label: "Pyerite",   volume: 0.01, value: marketValues.pyerite.jita },
-  { label: "Mexallon",  volume: 0.01, value: marketValues.mexallon.jita },
-  { label: "Isogen",    volume: 0.01, value: marketValues.isogen.jita },
-  { label: "Nocxium",   volume: 0.01, value: marketValues.nocxium.jita },
-  { label: "Zydrine",   volume: 0.01, value: marketValues.zydrine.jita },
-  { label: "Megacyte",  volume: 0.01, value: marketValues.megacyte.jita },
-  { label: "Morphite",  volume: 0.01, value: marketValues.morphite.jita },
+  { label: "Tritanium", buyOrder: false, volume: 0.01, value: marketValues.tritanium.jita },
+  { label: "Pyerite",   buyOrder: false, volume: 0.01, value: marketValues.pyerite.jita },
+  { label: "Mexallon",  buyOrder: false, volume: 0.01, value: marketValues.mexallon.jita },
+  { label: "Isogen",    buyOrder: false, volume: 0.01, value: marketValues.isogen.jita },
+  { label: "Nocxium",   buyOrder: false, volume: 0.01, value: marketValues.nocxium.jita },
+  { label: "Zydrine",   buyOrder: false, volume: 0.01, value: marketValues.zydrine.jita },
+  { label: "Megacyte",  buyOrder: false, volume: 0.01, value: marketValues.megacyte.jita },
+  { label: "Morphite",  buyOrder: false, volume: 0.01, value: marketValues.morphite.jita },
 ];
 
 const initialState = {
@@ -26,7 +26,7 @@ const {
 
 export const useMinerals = () => {
   const [minerals, setMinerals] = useGlobalState('minerals');
-
+  
   const setMineralValue = (mineral, value) => {
     const newMinerals = [...minerals];
 
@@ -40,6 +40,7 @@ export const useMinerals = () => {
       }
     }
 
+    newMinerals.timestamp = Date.now();
     setStickyState(newMinerals, 'minerals');
     setMinerals(newMinerals);
   }

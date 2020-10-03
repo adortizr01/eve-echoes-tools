@@ -1,4 +1,4 @@
-import { RPSkill } from "../SkillTypes";
+import { RPSkill, Accounting, ExpertAccounting, AvancedAccounting, PBasicSkill, PAvancedSkill, PExpertSkill } from "../SkillTypes";
 
 export const skills = [
   new RPSkill(
@@ -76,4 +76,68 @@ export const skills = [
     ["Arkonor", "Bistot", "Mercoxit"],
     (skillLevel, baseSkill) => baseSkill * ((skillLevel * 5) / 100)
   ),
+  new PBasicSkill(
+    "it.p.fr", "Frigate Manufacture",
+    ["1"]
+  ),
+  new PAvancedSkill(
+    "it.p.afr", "Avanced Frigate Manufacture",
+    ["1"]
+  ),
+  new PExpertSkill(
+    "it.p.efr", "Expert Frigate Manufacture",
+    ["1"]
+  ),
+  new PBasicSkill(
+    "it.p.dr", "Destroyer Manufacture",
+    ["2"]
+  ),
+  new PAvancedSkill(
+    "it.p.adr", "Avanced Destroyer Manufacture",
+    ["2"]
+  ),
+  new PExpertSkill(
+    "it.p.edr", "Expert Destroyer Manufacture",
+    ["2"]
+  ),
+  new PBasicSkill(
+    "it.p.cr", "Cruiser Manufacture",
+    ["3"]
+  ),
+  new PAvancedSkill(
+    "it.p.acr", "Avanced Cruiser Manufacture",
+    ["3"]
+  ),
+  new PExpertSkill(
+    "it.p.ecr", "Expert Cruiser Manufacture",
+    ["3"]
+  ),
+  new PBasicSkill(
+    "it.p.br", "BattleCruiser Manufacture",
+    ["4"]
+  ),
+  new PAvancedSkill(
+    "it.p.abr", "Avanced BattleCruiser Manufacture",
+    ["4"]
+  ),
+  new PExpertSkill(
+    "it.p.ebr", "Expert BattleCruiser Manufacture",
+    ["4"]
+  ),
+  new PBasicSkill(
+    "it.p.is", "Industrial Ships Manufacture",
+    ["21"]
+  ),
+  new PAvancedSkill(
+    "it.p.ais", "Avanced Industrial Ships Manufacture",
+    ["21"]
+  ),
+  new PExpertSkill(
+    "it.p.eis", "Expert Industrial Ships Manufacture",
+    ["21"]
+  ),
+  
+  new Accounting(),
+  new AvancedAccounting(),
+  new ExpertAccounting(),
 ]

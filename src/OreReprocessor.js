@@ -1,6 +1,7 @@
 import { getMinerals } from "./stores/minerals";
 import { RPSkill } from "./SkillTypes";
 import { skills } from "./stores/skills";
+import { PBasicSkill, PAvancedSkill, PExpertSkill } from './SkillTypes';
 
 const minerals = getMinerals();
 const tritanium = minerals[0];
@@ -162,4 +163,93 @@ export const useOreReprocessor = () => {
   }
 
   return { reprocessOreByUnit, reprocessOreByVolume, getOreReprocessingModifier };
+}
+
+export const useManufacture = () => {
+
+  const getManufactureModifier = () => {
+    let material = [];
+    material[1] = 0
+    material[1] = 0
+    material[2] = 0
+    material[3] = 0
+    material[4] = 0
+    material[5] = 0
+    material[21] = 0
+    var localSkills = skills;
+    for (const i in localSkills) {
+      if (localSkills[i] instanceof PBasicSkill) {
+       
+        switch (localSkills[i].level) {
+          case 1:
+            material[localSkills[i].canReprocess[0]] += 0.06;
+            break;
+          case 2:
+            material[localSkills[i].canReprocess[0]] += 0.012;
+            break;
+          case 3:
+            material[localSkills[i].canReprocess[0]] += 0.018;
+            break;
+          case 4:
+            material[localSkills[i].canReprocess[0]]+= 0.024;
+            break;
+          case 5:
+            material[localSkills[i].canReprocess[0]] += 0.03;
+            break;
+          default:
+            break;
+        }
+      } else if ((localSkills[i] instanceof PAvancedSkill)) {
+        switch (localSkills[i].level) {
+          case 1:
+            material[localSkills[i].canReprocess[0]] += 0.04;
+            break;
+          case 2:
+            material[localSkills[i].canReprocess[0]] += 0.08;
+            break;
+          case 3:
+            material[localSkills[i].canReprocess[0]] += 0.012;
+            break;
+          case 4:
+            material[localSkills[i].canReprocess[0]] += 0.016;
+            break;
+          case 5:
+            material[localSkills[i].canReprocess[0]] += 0.02;
+            break;
+          default:
+            break;
+        }
+      } else if ((localSkills[i] instanceof PExpertSkill)) {
+        switch (localSkills[i].level) {
+          case 1:
+            material[localSkills[i].canReprocess[0]] += 0.01;
+            break;
+          case 2:
+            material[localSkills[i].canReprocess[0]] += 0.02;
+            break;
+          case 3:
+            material[localSkills[i].canReprocess[0]] += 0.03;
+            break;
+          case 4:
+            material[localSkills[i].canReprocess[0]] += 0.04;
+            break;
+          case 5:
+            material[localSkills[i].canReprocess[0]] += 0.05;
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
+    material[1] = 1.5 - material[1];
+    material[2] = 1.5 - material[2];
+    material[3] = 1.5 - material[3];
+    material[4] = 1.5 - material[4];
+    material[5] = 1.5 - material[5];
+
+    return { material: material };
+  }
+
+  return { getManufactureModifier };
 }

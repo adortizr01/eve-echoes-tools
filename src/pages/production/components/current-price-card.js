@@ -5,11 +5,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { useShips } from '../../../stores/ships';
 import NumberFormat from 'react-number-format';
+
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
-
 
 const useStyles = makeStyles({
   root: {
@@ -30,10 +30,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TotalPrice() {
+export default function CurrentPrice() {
   const classes = useStyles();
   const { currentShip } = useShips();
+
   const [expanded, setExpanded] = React.useState(false);
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -42,7 +44,7 @@ export default function TotalPrice() {
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          Minimum price
+          Current price ship
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           {currentShip.label}
@@ -50,7 +52,7 @@ export default function TotalPrice() {
         <Typography className={classes.title} gutterBottom>
           <NumberFormat
             className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.totalPrice}
+            value={currentShip.api_Sell}
             displayType={'text'}
             decimalScale={0}
             thousandSeparator={true}
@@ -69,51 +71,60 @@ export default function TotalPrice() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Mineral:</Typography>
+          <Typography paragraph>Current buy:</Typography>
           <Typography paragraph>
           <NumberFormat
             className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.totalMineral}
+            value={currentShip.api_currentBuy}
             displayType={'text'}
             decimalScale={0}
             thousandSeparator={true}
             suffix={" ISK"}
           />
           </Typography>
-          <Typography paragraph>Planetary:</Typography>
+          <Typography paragraph>Current sell:</Typography>
           <Typography paragraph>
           <NumberFormat
             className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.totalPlanetary}
+            value={currentShip.api_currentSell}
             displayType={'text'}
             decimalScale={0}
             thousandSeparator={true}
             suffix={" ISK"}
           />
           </Typography>
-          <Typography paragraph>Build Cost:</Typography>
+          <Typography paragraph>Sell:</Typography>
           <Typography paragraph>
           <NumberFormat
             className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.build}
+            value={currentShip.api_Sell}
             displayType={'text'}
             decimalScale={0}
             thousandSeparator={true}
             suffix={" ISK"}
           />
           </Typography>
-          <Typography paragraph>Blueprint Cost:</Typography>
+          <Typography paragraph>Buy:</Typography>
           <Typography paragraph>
           <NumberFormat
             className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.blueprintPrice}
+            value={currentShip.api_Buy}
             displayType={'text'}
             decimalScale={0}
             thousandSeparator={true}
             suffix={" ISK"}
           />
           </Typography>
-          
+          <Typography paragraph>Volume of trade:</Typography>
+          <Typography paragraph>
+          <NumberFormat
+            className="w-30 bg-white px-2 text-right rounded shadow-inner"
+            value={currentShip.api_currentVolume}
+            displayType={'text'}
+            decimalScale={0}
+            thousandSeparator={true}
+          />
+          </Typography>
         </CardContent>
       </Collapse>
     </Card>

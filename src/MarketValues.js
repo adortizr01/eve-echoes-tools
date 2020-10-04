@@ -25,10 +25,10 @@ const marketValues = {
 
   // minerals
   tritanium:    { jita:    3 },// 2
-  pyerite:      { jita:   37 },// 36
-  mexallon:     { jita:   56 },// 55
-  isogen:       { jita:  153 },// 165
-  nocxium:      { jita: 2050 },// 2410
+  pyerite:      { jita:   27 },// 36
+  mexallon:     { jita:   30 },// 55
+  isogen:       { jita:  120 },// 165
+  nocxium:      { jita: 2000 },// 2410
   zydrine:      { jita: 1800 },// 1500
   megacyte:     { jita: 4501 },
   morphite:     { jita: 4100 },
@@ -44,25 +44,25 @@ const marketValues = {
    Fiber_Composite:      { jita: 0 },
    Gleaming_Alloy:      { jita: 0 },
    Glossy_Compound:      { jita: 0 },
-   Heavy_Metals:      { jita: 0 },
+   Heavy_Metals:      { jita: 210 },
    Heavy_Water:      { jita: 0 },
    Industrial_Fibers:      { jita: 0 },
    Ionic_Solutions:      { jita: 0 },
    Liquid_Ozone:      { jita: 0 },
    Lucent_Compound:      { jita: 0 },
-   Lustering_Alloy:      { jita: 0 },
+   Lustering_Alloy:      { jita: 120 },
    Motley_Compound:      { jita: 0 },
    Nanites:      { jita: 0 },
    Noble_Gas:      { jita: 0 },
    Noble_Metals:      { jita: 0 },
-   Opulent_Compound:      { jita: 0 },
+   Opulent_Compound:      { jita: 144 },
    Oxygen_Isotopes:      { jita: 0 },
    Plasmoids:      { jita: 0 },
    Polyaramids:      { jita: 0 },
    Precious_Alloy:      { jita: 0 },
    Reactive_Gas:      { jita: 0 },
-   Reactive_Metals:      { jita: 0 },
-   Sheen_Compound:      { jita: 0 },
+   Reactive_Metals:      { jita: 370 },
+   Sheen_Compound:      { jita: 140 },
    Silicate_Glass:      { jita: 0 },
    Smartfab_Units:      { jita: 0 },
    Supertensile_Plastics:      { jita: 0 },

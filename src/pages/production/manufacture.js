@@ -8,6 +8,8 @@ import TaxesBroker from './components/taxes-broker-card';
 import TaxesSales from './components/taxes-sales-card';
 import TotalPrice from './components/total-price-card';
 import TotalPriceTaxes from './components/total-price-taxes-card';
+import CurrentPrice from './components/current-price-card';
+import TotalVolume from './components/total-volume-card';
 import NativeSelects from './views/select-ship';
 import MineralsTable from './views/mineral-table';
 import PlanetarysTable from './views/planetary-table';
@@ -36,6 +38,8 @@ const Manufacture = () => {
                 <TotalPriceTaxes />
                 <TaxesBroker />
                 <TaxesSales />  
+                <TotalVolume />
+                <CurrentPrice />
             </Grid>
 
             <div className="flex flex-wrap justify-between items-center mb-2">

@@ -12,12 +12,16 @@ export default ({ onClose }) => {
   }
 
   var findPlanetary = [];
-  for (let index = 0; index < planetarys.length; index++) {
-    const element = planetarys[index];
-    const currentPlanetary = currentShip.planetary.find(userPlanetary => userPlanetary.planetary.label === element.label )
-    if (currentPlanetary.show === true) {
-      findPlanetary.push( element );
+  if (currentShip.planetary !== undefined) {
+    for (let index = 0; index < planetarys.length; index++) {
+      const element = planetarys[index];
+      const currentPlanetary = currentShip.planetary.find(userPlanetary => userPlanetary.planetary.label === element.label)
+      if (currentPlanetary.show === true) {
+        findPlanetary.push(element);
+      }
     }
+  } else {
+    findPlanetary = planetarys;
   }
 
   return (
@@ -33,13 +37,23 @@ export default ({ onClose }) => {
                 className="w-16 bg-gray-200 rounded-sm shadow-inner text-right px-1 mr-1"
                 type="text"
                 value={planetary.value}
-                onChange={(e) => { 
-                  setPlanetaryValue(planetary, e.target.value) 
-                } }
+                onChange={(e) => {
+                  setPlanetaryValue(planetary, e.target.value)
+                }}
                 onBlur={(e) => resetPlanetaryValue(planetary, e.target.value)}
               />
                 isk/unit
+            </div>
+
+            <div className="flex-auto whitespace-no-wrap text-right py-1">
+            <input
+                className="w-16 bg-gray-200 rounded-sm shadow-inner text-right px-1 mr-1"
+                type="text"
+                value={planetary.apiDataSell}
+              />
               </div>
+              isk/unit
+             <div className="flex-none w-32 whitespace-no-wrap pr-4"></div>
           </div>
         ))}
         <div className="flex justify-end p-4">

@@ -2,6 +2,7 @@
 import { createGlobalState } from 'react-hooks-global-state';
 import { getStickyState, setStickyState } from '../utils';
 import marketValues from '../MarketValues';
+import * as externalData from '../models/externalItems.json';
 
 export const orgMinerals = [
   { label: "Tritanium", buyOrder: false, volume: 0.01, value: marketValues.tritanium.jita },
@@ -27,6 +28,39 @@ const {
 export const useMinerals = () => {
   const [minerals, setMinerals] = useGlobalState('minerals');
   
+  const status = {"externalAPI": false};
+    
+    async function getData(url) {
+        // Opciones por defecto estan marcadas con un *
+        const response = await fetch(url, {
+          method: 'GET', // *GET, POST, PUT, DELETE, etc.
+          // mode: 'cors', // no-cors, *cors, same-origin
+          // cache: 'force-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      });
+        return await response.json(); // parses JSON response into native JavaScript objects
+      }
+
+      async function setInitialApiMarket(){
+        //Get external price from API
+        const { info, items } = externalData.default;
+        for (let index = 0; index < minerals.length; index++) {
+            const element = minerals[index];
+            var item = items.find(userItem => userItem.name === element.label);
+            if (item === undefined) {
+                continue;
+            }
+            const data = await getData(info.accessPoint + item.item_id);
+            var length = data.length - 1;
+            var lastData = data[length];
+            element.apiDataSell = lastData.sell;
+            element.apiDataVolume = lastData.volume;
+        }
+    }
+
+    // if (status.externalAPI = false) {
+        setInitialApiMarket().then(status.externalAPI = true);
+    // }
+
   const setMineralValue = (mineral, value) => {
     const newMinerals = [...minerals];
 

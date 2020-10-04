@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TotalPrice() {
+export default function TotalVolume() {
   const classes = useStyles();
   const { currentShip } = useShips();
   const [expanded, setExpanded] = React.useState(false);
@@ -42,7 +42,7 @@ export default function TotalPrice() {
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          Minimum price
+          Total volume
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           {currentShip.label}
@@ -50,11 +50,11 @@ export default function TotalPrice() {
         <Typography className={classes.title} gutterBottom>
           <NumberFormat
             className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.totalPrice}
+            value={currentShip.totalVolume}
             displayType={'text'}
             decimalScale={0}
             thousandSeparator={true}
-            suffix={" ISK"}
+            suffix={" m3"}
           />
         </Typography>
       </CardContent>
@@ -73,47 +73,24 @@ export default function TotalPrice() {
           <Typography paragraph>
           <NumberFormat
             className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.totalMineral}
+            value={currentShip.totalVolumeMineral}
             displayType={'text'}
             decimalScale={0}
             thousandSeparator={true}
-            suffix={" ISK"}
+            suffix={" m3"}
           />
           </Typography>
           <Typography paragraph>Planetary:</Typography>
           <Typography paragraph>
           <NumberFormat
             className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.totalPlanetary}
+            value={currentShip.totalVolumePlanetary}
             displayType={'text'}
             decimalScale={0}
             thousandSeparator={true}
-            suffix={" ISK"}
+            suffix={" m3"}
           />
           </Typography>
-          <Typography paragraph>Build Cost:</Typography>
-          <Typography paragraph>
-          <NumberFormat
-            className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.build}
-            displayType={'text'}
-            decimalScale={0}
-            thousandSeparator={true}
-            suffix={" ISK"}
-          />
-          </Typography>
-          <Typography paragraph>Blueprint Cost:</Typography>
-          <Typography paragraph>
-          <NumberFormat
-            className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.blueprintPrice}
-            displayType={'text'}
-            decimalScale={0}
-            thousandSeparator={true}
-            suffix={" ISK"}
-          />
-          </Typography>
-          
         </CardContent>
       </Collapse>
     </Card>

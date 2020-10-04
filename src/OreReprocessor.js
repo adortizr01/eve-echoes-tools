@@ -185,16 +185,16 @@ export const useManufacture = () => {
             material[localSkills[i].canReprocess[0]] += 0.06;
             break;
           case 2:
-            material[localSkills[i].canReprocess[0]] += 0.012;
+            material[localSkills[i].canReprocess[0]] += 0.12;
             break;
           case 3:
-            material[localSkills[i].canReprocess[0]] += 0.018;
+            material[localSkills[i].canReprocess[0]] += 0.18;
             break;
           case 4:
-            material[localSkills[i].canReprocess[0]]+= 0.024;
+            material[localSkills[i].canReprocess[0]]+= 0.24;
             break;
           case 5:
-            material[localSkills[i].canReprocess[0]] += 0.03;
+            material[localSkills[i].canReprocess[0]] += 0.3;
             break;
           default:
             break;
@@ -208,13 +208,13 @@ export const useManufacture = () => {
             material[localSkills[i].canReprocess[0]] += 0.08;
             break;
           case 3:
-            material[localSkills[i].canReprocess[0]] += 0.012;
+            material[localSkills[i].canReprocess[0]] += 0.12;
             break;
           case 4:
-            material[localSkills[i].canReprocess[0]] += 0.016;
+            material[localSkills[i].canReprocess[0]] += 0.16;
             break;
           case 5:
-            material[localSkills[i].canReprocess[0]] += 0.02;
+            material[localSkills[i].canReprocess[0]] += 0.2;
             break;
           default:
             break;
@@ -247,6 +247,7 @@ export const useManufacture = () => {
     material[3] = 1.5 - material[3];
     material[4] = 1.5 - material[4];
     material[5] = 1.5 - material[5];
+    material[21] = 1.5 - material[21];
 
     return { material: material };
   }

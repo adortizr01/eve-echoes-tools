@@ -51,6 +51,16 @@ function MineralRow(props) {
           <TableCell align="right">
             <NumberFormat
               className="w-30 bg-white px-2 text-right rounded shadow-inner"
+              value={element.mineral.value}
+              suffix={" ISK"}
+              decimalScale={2}
+              displayType={'text'}
+              thousandSeparator={true}
+            />
+          </TableCell>
+          <TableCell align="right">
+            <NumberFormat
+              className="w-30 bg-white px-2 text-right rounded shadow-inner"
               value={element.units}
               decimalScale={0}
               displayType={'text'}
@@ -61,6 +71,7 @@ function MineralRow(props) {
             <NumberFormat
               className="w-30 bg-white px-2 text-right rounded shadow-inner"
               value={element.totalPrice}
+              suffix={" ISK"}
               decimalScale={0}
               displayType={'text'}
               thousandSeparator={true}
@@ -70,6 +81,7 @@ function MineralRow(props) {
             <NumberFormat
               className="w-30 bg-white px-2 text-right rounded shadow-inner"
               value={element.totalPriceBroker}
+              suffix={" ISK"}
               decimalScale={0}
               displayType={'text'}
               thousandSeparator={true}
@@ -78,8 +90,29 @@ function MineralRow(props) {
           <TableCell align="right">
             <NumberFormat
               className="w-30 bg-white px-2 text-right rounded shadow-inner"
+              value={element.prop}
+              decimalScale={2}
+              displayType={'text'}
+              thousandSeparator={true}
+            />
+          </TableCell>
+          <TableCell align="right">
+            <NumberFormat
+              className="w-30 bg-white px-2 text-right rounded shadow-inner"
+              value={element.mineral.volume}
+              suffix={" m3"}
+              decimalScale={2}
+              displayType={'text'}
+              thousandSeparator={true}
+            />
+          </TableCell>
+
+          <TableCell align="right">
+            <NumberFormat
+              className="w-30 bg-white px-2 text-right rounded shadow-inner"
               value={element.totalVolume}
-              decimalScale={0}
+              suffix={" m3"}
+              decimalScale={2}
               displayType={'text'}
               thousandSeparator={true}
             />
@@ -102,9 +135,12 @@ export default function MineralsTable() {
           <TableRow>
             <TableCell />
             <TableCell>Mineral/Ore</TableCell>
+            <TableCell align="right">Price</TableCell>
             <TableCell align="right">Units</TableCell>
             <TableCell align="right">Output</TableCell>
             <TableCell align="right">Output with broker</TableCell>
+            <TableCell align="right">%</TableCell>
+            <TableCell align="right">Volume</TableCell>
             <TableCell align="right">Total Volume</TableCell>
           </TableRow>
         </TableHead>

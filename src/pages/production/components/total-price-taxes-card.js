@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { useShips } from '../../../stores/ships';
 import NumberFormat from 'react-number-format';
 
-import {useTraderFee} from '../../../marketUtils';
+import { useTraderFee } from '../../../marketUtils';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -17,6 +17,7 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
     marginLeft: 12,
+    marginTop: 12,
   },
   bullet: {
     display: 'inline-block',
@@ -34,7 +35,7 @@ const useStyles = makeStyles({
 export default function TotalPriceTaxes() {
   const classes = useStyles();
   const { currentShip } = useShips();
-  const {broker, sales} = useTraderFee().getTradeModifier()
+  const { broker, sales } = useTraderFee().getTradeModifier()
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -46,7 +47,7 @@ export default function TotalPriceTaxes() {
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          Sell price with taxes
+          Minimum price with taxes
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           {currentShip.label}
@@ -75,20 +76,42 @@ export default function TotalPriceTaxes() {
         <CardContent>
           <Typography paragraph>Mineral:</Typography>
           <Typography paragraph>
+            <NumberFormat
+              className="w-30 bg-white px-2 text-right rounded shadow-inner"
+              value={currentShip.totalMineral * (1 + broker + sales)}
+              displayType={'text'}
+              decimalScale={0}
+              thousandSeparator={true}
+              suffix={" ISK"}
+            />
+          </Typography>
+          <Typography paragraph>Planetary:</Typography>
+          <Typography paragraph>
+            <NumberFormat
+              className="w-30 bg-white px-2 text-right rounded shadow-inner"
+              value={currentShip.totalPlanetary * (1 + broker + sales)}
+              displayType={'text'}
+              decimalScale={0}
+              thousandSeparator={true}
+              suffix={" ISK"}
+            />
+          </Typography>
+          <Typography paragraph>Build Cost:</Typography>
+          <Typography paragraph>
           <NumberFormat
             className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.totalMineral * (1 + broker + sales)}
+            value={currentShip.build * (1 + broker + sales)}
             displayType={'text'}
             decimalScale={0}
             thousandSeparator={true}
             suffix={" ISK"}
           />
           </Typography>
-          <Typography paragraph>Planetary:</Typography>
+          <Typography paragraph>Blueprint Cost:</Typography>
           <Typography paragraph>
           <NumberFormat
             className="w-30 bg-white px-2 text-right rounded shadow-inner"
-            value={currentShip.totalPlanetary * (1 + broker + sales)}
+            value={currentShip.blueprintPrice * (1 + broker + sales)}
             displayType={'text'}
             decimalScale={0}
             thousandSeparator={true}
